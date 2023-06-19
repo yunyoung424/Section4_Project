@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Recommendations</title>
+    <style>
+        body {
+            background-color: black;
+            color: whitesmoke;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        .input-movie {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .movie-row {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .movie-info {
+            flex: 1;
+            margin: 10px;
+            text-align: center;
+        }
+        
+        hr {
+            border: none;
+            border-top: 3px solid whitesmoke;
+            margin: 40px 0;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Movie Suggestions</h1>
+    
+    <div class="input-movie">
+        <h2>Your Movie: {{ input_movie[0] }}</h2>
+        <img src="https://image.tmdb.org/t/p/w300{{ input_movie[2] }}" alt="Input Movie Poster">
+        <h3> {{ input_movie[0] }}</h3>
+        <p>Release Date: {{ input_movie[1] }}</p>
+    </div>
+    
+    <hr>
+    
+    {% for i in range(0, recommended_movies|length, 3) %}
+        <div class="movie-row">
+            {% for movie in recommended_movies[i:i+3] %}
+                <div class="movie-info">
+                    <img src="https://image.tmdb.org/t/p/w300{{ movie[2] }}" alt="Movie Poster">
+                    <h4>{{ movie[0] }}</h4>
+                    <p>Release Date: {{ movie[1] }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</body>
+</html>
